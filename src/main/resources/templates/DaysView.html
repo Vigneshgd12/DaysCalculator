@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en" xmlns="http://www.thymeleaf.org">
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<title>Days Calculator</title>
+</head>
+<body>
+<br/><br/>
+<center><h1>DAYS CALCULATOR</h1></center>
+<center><h6>Calculates the number of days between the selected start and end dates</h6></center>
+
+<br/><br/><br/>
+	<div class="container">
+		<form method="post" th:object="${daysCalculator}" th:action="@{http://localhost:8080/dayscalculator/calculate}">
+			<div class="form-row">
+				<div class="form-group col-md-5">
+					Start Date	:<input type="date" class="form-control" style="width:200px;background-color:#aed6f1;"
+					 id="startDate" placeholder="Start Date" th:field="${daysCalculator.startDate}"/>
+				</div>
+				<div class="form-group col-md-5">
+					End Date	:<input type="date" class="form-control" style="width:200px;background-color:#aed6f1;"
+					id="endDate" placeholder="End Date" th:field="${daysCalculator.endDate}"/>
+				</div>
+				<div class="form-group col-md-2">
+				<button type="submit" class="btn btn-primary">Calculate</button>
+				</div>
+				<br/><br/><br/><br/><br/>
+				<div class="form-group col-md-12" th:if="${daysCalculator.errorMessage}!=''">
+					<center><b><p style="font-family:courier;color:red" th:text="${daysCalculator.errorMessage}"></p></b></center>
+				</div>
+				<div class="form-group col-md-12" th:if="${daysCalculator.dateDifference}!=0">
+					<center><h4>Difference is <span th:text="${daysCalculator.dateDifference}"></span> days!!</h4></center>
+				</div>
+			</div>
+		</form>
+	</div>
+
+		<!-- Optional JavaScript -->
+		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+		<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
